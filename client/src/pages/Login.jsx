@@ -27,13 +27,13 @@ const Login = () => {
     const onSubmit = async (data) => {
         const { email, password } = data;
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/auth/login/`, { email, password });
+            const response = await axios.post(`https://link-up-django-api.vercel.app/auth/login/`, { email, password });
             if (response.data.error) {
                 showToast(`${response.data.error}`, 'error');
             } else {
                 showToast('Login successful', 'success');
                 localStorage.setItem('jwt_token', response.data.token);
-                const userResponse = await axios.post(`http://127.0.0.1:8000/user/getuserid/`, { email });
+                const userResponse = await axios.post(`https://link-up-django-api.vercel.app/user/getuserid/`, { email });
                 setAuthState({
                     user_id: userResponse.data.user_id,
                     email: email,

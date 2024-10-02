@@ -26,7 +26,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/signup/', formDataToSend, {
+      const response = await axios.post('https://link-up-django-api.vercel.app/auth/signup/', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -36,7 +36,7 @@ const Signup = () => {
       }
       else {
         localStorage.setItem('jwt_token', response.data.token);
-        const userResponse = await axios.post('http://127.0.0.1:8000/user/getuserid/', { email: data.email });
+        const userResponse = await axios.post('https://link-up-django-api.vercel.app/user/getuserid/', { email: data.email });
         setAuthState({
           user_id: userResponse.data.user_id,
           email: data.email,

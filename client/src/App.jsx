@@ -32,7 +32,7 @@ const App = () => {
   const get_details = async (accessToken) => {
     console.log("Fetching user details...");
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/validation/", { accessToken });
+      const response = await axios.post("https://link-up-django-api.vercel.app/auth/validation/", { accessToken });
       if (response.data.error) {
         setAuthState({ user_id: '', email: '', status: false });
       } else {
