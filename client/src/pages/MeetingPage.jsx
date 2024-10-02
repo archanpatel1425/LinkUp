@@ -7,7 +7,7 @@ import { io } from "socket.io-client";
 import { useToast } from '../components/Toast'; // Ad
 import { AuthContext } from "../helpers/AuthContext";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://link-up-node-api.vercel.app");
 
 function MeetingPage() {
   const [showParticipants, setShowParticipants] = useState(false);
