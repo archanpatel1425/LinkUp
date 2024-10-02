@@ -6,11 +6,18 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors());
+const corsOptions = {
+  origin: ["https://link-up-app.vercel.app"], // Add more origins if necessary
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
 
 const io = socketIO(server, {
   cors: {
-    origin: "https://link-up-app.vercel.app",
+    origin: "https://link-up-app.vercel.app", // No trailing slash
     methods: ["GET", "POST"],
   },
 });
