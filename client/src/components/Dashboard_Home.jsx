@@ -1,4 +1,4 @@
-import { Calendar, Play, PlusCircle, Video } from 'lucide-react'; // Assuming you're using Lucide icons
+import { PlusCircle, Video } from 'lucide-react'; // Assuming you're using Lucide icons
 import React, { useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
@@ -44,10 +44,10 @@ const Dashboard_Home = () => {
 
     const handleStartMeeting = () => {
         const user_id = authState.user_id;
-        axios.post('http://127.0.0.1:8000/meeting/getmeetingid/', { user_id })
+        axios.post('https://link-up-django-api.vercel.app/meeting/getmeetingid/', { user_id })
             .then((response) => {
                 const meeting_id = response.data.meeting_id;
-                axios.post('http://127.0.0.1:8000/user/getusername/', { user_id: authState.user_id })
+                axios.post('https://link-up-django-api.vercel.app/user/getusername/', { user_id: authState.user_id })
                     .then((response) => {
                         if (meeting_id !== "") {
                             navigate(`/meet/${meeting_id}`, {
@@ -95,7 +95,7 @@ const Dashboard_Home = () => {
                         <p className="mt-2 text-white">Via invitation link</p>
                     </div>
 
-                        {/* <div
+                    {/* <div
                             className="bg-purple-500 p-6 rounded-lg text-center shadow-lg cursor-pointer hover:bg-purple-600 transition flex flex-col items-center"
                             style={{ height: '180px' }} // Uniform height
                         >

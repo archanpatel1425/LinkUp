@@ -28,9 +28,9 @@ const Settings = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/user/fetch-settings/', { user_id });
+        const response = await axios.post('https://link-up-django-api.vercel.app/user/fetch-settings/', { user_id });
         const { allow_participents_screen_share, video_on_join, audio_on_join } = response.data.controls;
-        
+
         setAllowScreenShare(allow_participents_screen_share);
         setVideoOnJoin(video_on_join);
         setAudioOnJoin(audio_on_join);
@@ -45,7 +45,7 @@ const Settings = () => {
   // Save settings to backend when toggles change
   const saveSettings = async (newSettings) => {
     try {
-      await axios.post('http://127.0.0.1:8000/user/save-settings/', {
+      await axios.post('https://link-up-django-api.vercel.app/user/save-settings/', {
         user_id,
         allowScreenShare: newSettings.allowScreenShare,
         videoOnJoin: newSettings.videoOnJoin,

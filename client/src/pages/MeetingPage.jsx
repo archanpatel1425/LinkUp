@@ -186,7 +186,7 @@ function MeetingPage() {
 
   }, []);
   const check_is_host = () => {
-    axios.post(`http://127.0.0.1:8000/meeting/check_host/`, { room, user_id: authState.user_id })
+    axios.post(`https://link-up-django-api.vercel.app/meeting/check_host/`, { room, user_id: authState.user_id })
       .then((response) => {
         if (response.data.is_host == true) {
           setIsHost(true)
@@ -377,7 +377,7 @@ function MeetingPage() {
   };
   const admitUser = async (userId) => {
     try {
-      await axios.post('http://127.0.0.1:8000/meeting/admit-user/', { room, userId });
+      await axios.post('https://link-up-django-api.vercel.app/meeting/admit-user/', { room, userId });
       fetchUpdates(); // Refresh the waiting room list
     } catch (error) {
       console.error("Error admitting user:", error);
@@ -385,7 +385,7 @@ function MeetingPage() {
   };
   const fetchUpdates = async () => {
     try {
-      axios.post(`http://127.0.0.1:8000/meeting/room-updates/`, { meeting_id: room })
+      axios.post(`https://link-up-django-api.vercel.app/meeting/room-updates/`, { meeting_id: room })
         .then((response) => {
           setWaitingRoomUsers(response.data.waiting_room_list);
         })
@@ -401,7 +401,7 @@ function MeetingPage() {
     }
     setShowParticipants(!showParticipants);
     if (showParticipants) {
-        socket.emit("getParticipants", room);
+      socket.emit("getParticipants", room);
     }
   }
   const toggleChat = () => {

@@ -26,7 +26,7 @@ const Navbar = () => {
 
   }, [profilePhotoUrl])
   const fatch_profile_photo = () => {
-    axios.post('http://127.0.0.1:8000/user/fatch-profile-photo/', { user_id: authState.user_id })
+    axios.post('https://link-up-django-api.vercel.app/user/fatch-profile-photo/', { user_id: authState.user_id })
       .then((response) => {
         setprofilePhotoUrl(response.data.profile_image_url)
       })
@@ -133,8 +133,8 @@ const Navbar = () => {
 
                 {isProfileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-gray-900 border mt-5 border-gray-600 text-white rounded-md shadow-lg py-1 z-10"> {/* Dark-themed profile menu */}
-                    
-                    
+
+
                     <button
                       type="button"
                       className="block w-full px-4 py-2 text-sm hover:bg-gray-700 focus:outline-none appearance-none text-left"
@@ -165,7 +165,7 @@ const Navbar = () => {
                 {isProfileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-gray-900 border mt-5 border-gray-600 text-white rounded-md shadow-lg py-1 z-10"> {/* Dark-themed profile menu */}
 
-                    
+
                     <button
                       type="button"
                       className="block w-full px-4 py-2 text-sm hover:bg-gray-700 focus:outline-none appearance-none text-left"
@@ -192,7 +192,7 @@ const Navbar = () => {
           <div className="flex flex-col space-y-4 mt-12">
             <Link to="/" className="text-white text-lg hover:text-gray-300">Home</Link>
             {isLogin && <Link to="/dashboard" className="text-white text-lg hover:text-gray-300">Dashboard</Link>}
-{/*             <Link to="/about" className="text-white text-lg hover:text-gray-300">About</Link>
+            {/*             <Link to="/about" className="text-white text-lg hover:text-gray-300">About</Link>
             <Link to="/contact" className="text-white text-lg hover:text-gray-300">Contact Us</Link> */}
             {!isLogin ? (
               <>

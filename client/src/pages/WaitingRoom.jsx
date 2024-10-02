@@ -10,9 +10,9 @@ const WaitingRoom = () => {
     const navigate = useNavigate();
     var controls = {}
     const get_controls_details = async () => {
-        await axios.post(`http://127.0.0.1:8000/meeting/get-control-details/`, { meetingId })
+        await axios.post(`https://link-up-django-api.vercel.app/meeting/get-control-details/`, { meetingId })
             .then((response) => {
-                controls=response.data.controls
+                controls = response.data.controls
                 return response.data.controls
             }
             )
@@ -20,13 +20,13 @@ const WaitingRoom = () => {
 
     const handleRequestJoin = () => {
         console.log("Joining Room...");
-        axios.post(`http://127.0.0.1:8000/user/getusername/`, { user_id: authState.user_id })
+        axios.post(`https://link-up-django-api.vercel.app/user/getusername/`, { user_id: authState.user_id })
             .then((response) => {
                 const username = response.data.username
                 if (meetingId !== "") {
                     // Add user to waiting room (send to backend)
                     controls = get_controls_details()
-                    axios.post(`http://127.0.0.1:8000/meeting/waiting-room/`, {
+                    axios.post(`https://link-up-django-api.vercel.app/meeting/waiting-room/`, {
                         meeting_id: meetingId,
                         user_id: authState.user_id,
                     })
@@ -49,7 +49,7 @@ const WaitingRoom = () => {
     // Function to poll the backend for approval
     const checkApprovalStatus = (username) => {
         const interval = setInterval(() => {
-            axios.post(`http://127.0.0.1:8000/meeting/waiting-room-status/`, {
+            axios.post(`https://link-up-django-api.vercel.app/meeting/waiting-room-status/`, {
                 meeting_id: meetingId,
                 user_id: authState.user_id
             })
@@ -60,7 +60,7 @@ const WaitingRoom = () => {
                             state: {
                                 username: username,
                                 allow_participents_screen_share: controls.allow_participents_screen_share,
-                                video_on_join: controls.video_on_join,  
+                                video_on_join: controls.video_on_join,
                                 audio_on_join: controls.audio_on_join
                             } // Pass username in state
                         });

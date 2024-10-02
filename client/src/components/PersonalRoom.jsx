@@ -18,7 +18,7 @@ const PersonalRoom = () => {
 
   const fetch_meeting_details = () => {
     console.log("Fetching ....");
-    axios.post("http://127.0.0.1:8000/meeting/fetch-meeting-detail/", { user_id })
+    axios.post("https://link-up-django-api.vercel.app/meeting/fetch-meeting-detail/", { user_id })
       .then((response) => {
         setTopic(`${response.data.username}'s Personal Meeting Room`);
         setMeetingID(response.data.meeting_id);
@@ -59,7 +59,7 @@ const PersonalRoom = () => {
 
   // Function to generate a new Meeting ID (can be from API or random generation)
   const generateNewMeetingID = () => {
-    axios.post("http://127.0.0.1:8000/meeting/generate-new-meetingId/", { user_id })
+    axios.post("https://link-up-django-api.vercel.app/meeting/generate-new-meetingId/", { user_id })
       .then((response) => {
         setMeetingID(response.data.meeting_id);
       })
