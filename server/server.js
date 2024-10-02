@@ -8,12 +8,12 @@ const server = http.createServer(app);
 
 app.use(cors());
 
-/* const io = socketIO(server, {
+const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://link-up-app.vercel.app",
     methods: ["GET", "POST"],
   },
-}); */
+});
 
 const usersInRooms = {};
 
@@ -42,14 +42,14 @@ io.on("connection", (socket) => {
     io.to(message.room).emit("receiveMessage", message);
   });
 
-    socket.on("offer", (to, description) => {
-      console.log("backend offer")
-      socket.to(to).emit("offer", socket.id, description);
-    });
+  socket.on("offer", (to, description) => {
+    console.log("backend offer")
+    socket.to(to).emit("offer", socket.id, description);
+  });
 
   socket.on("answer", (to, description) => {
     socket.to(to).emit("answer", socket.id, description);
-  });   
+  });
 
   socket.on("candidate", (to, candidate) => {
     socket.to(to).emit("candidate", socket.id, candidate);
@@ -91,5 +91,5 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
