@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Copy } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 
-import { useToast } from '../components/Toast'; // Ad
+import { useToast } from './Toast'; // Ad
 import { AuthContext } from "../helpers/AuthContext";
 const PersonalRoom = () => {
   const [inviteLink, setInviteLink] = useState('');
@@ -17,7 +17,6 @@ const PersonalRoom = () => {
   }, [meetingID, inviteLink]);
 
   const fetch_meeting_details = () => {
-    console.log("Fetching ....");
     axios.post("http://localhost:5000/meeting/fetch-meeting-detail", { user_id })
       .then((response) => {
         setTopic(`${response.data.username}'s Personal Meeting Room`);

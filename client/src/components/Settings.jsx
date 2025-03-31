@@ -30,12 +30,9 @@ const Settings = () => {
         await axios.post('http://localhost:5000/meeting/getmeetingid/', { user_id })
           .then(async (response) => {
             const meetingId = response.data.meeting_id;
-            console.log('user_id:', user_id)
-            console.log('meeting_id:', meetingId)
             await axios.post('http://localhost:5000/user/fetch-settings/', { meetingId })
               .then((response) => {
                 const { allow_participants_screen_share, enableWaitingRoom } = response.data.controls;
-                console.log(response.data.controls)
                 setAllowScreenShare(allow_participants_screen_share);
                 setEnableWaitingRoom(enableWaitingRoom);
               })
@@ -58,7 +55,6 @@ const Settings = () => {
         allowScreenShare: newSettings.allowScreenShare,
         enableWaitingRoom: newSettings.enableWaitingRoom
       });
-      console.log('Settings updated successfully');
     } catch (error) {
       console.error('Error saving settings:', error);
     }

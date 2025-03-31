@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import PersonalRoom from '../components/PersonalRoom';
 import Home from '../components/Dashboard_Home';
 import Navbar from '../components/Navbar';
-import PersonalRoom from '../components/PersonalRoom';
 import Settings from '../components/Settings';
 import Sidebar from '../components/Sidebar';
 import { AuthContext } from "../helpers/AuthContext";
@@ -49,7 +49,7 @@ const AfterLogin_Home = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-900 overflow-hidden mt-16">  
+        <div className="flex flex-col min-h-screen bg-gray-900 overflow-hidden mt-16">
             <Navbar />
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar

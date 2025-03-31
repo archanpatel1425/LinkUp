@@ -32,7 +32,6 @@ const Navbar = () => {
       })
   }
   const logout_user = () => {
-    console.log("Logging out");
     localStorage.removeItem('jwt_token');
     setIsLogin(false);
     setIsProfileMenuOpen(false);

@@ -9,10 +9,8 @@ async function getUsername(userId) {
 
 async function fetchProfilePhoto(userId) {
     try {
-        console.log('userId', userId)
         const user = await User.findById(userId);
         if (!user) throw new Error('User not found');
-        console.log('[[[[[', user.profilePic)
         return user.profilePic;
     }
     catch (e) {
@@ -27,7 +25,6 @@ async function fetchMeetingSettings(meetingId) {
 }
 
 async function saveMeetingSettings(userId, controls) {
-    console.log(userId, controls)
     const result = await Meeting.updateOne(
         { host_id: userId },
         {

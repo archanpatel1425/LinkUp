@@ -1,12 +1,6 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    
-    google_id: {
-        type: String,
-        unique: true,
-        sparse: true // Allows this field to be optional (non-required unique field)
-    },
     email: {
         type: String,
         required: true,
@@ -40,14 +34,6 @@ const UserSchema = new mongoose.Schema({
     signedUpAt: {
         type: Date,
         default: Date.now // Sets the current date/time as default
-    },
-    resetToken: {
-        type: String,
-        default: null // Token for password reset, can be null if not set
-    },
-    refreshToken: {
-        type: String,
-        default: null // Refresh token for session management, can be null if not set
     }
 }, {
     collection: 'user' // Use 'user' as the collection name

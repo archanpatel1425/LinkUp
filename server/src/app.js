@@ -43,7 +43,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Handles URL-encoded data (if needed)
 
-app.use(express.json());
+app.use(express.json());  
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());

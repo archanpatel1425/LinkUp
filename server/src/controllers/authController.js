@@ -25,9 +25,7 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        console.log('login here');
         const { email, password } = req.body;
-        console.log(email, password);
         const response = await authService.login(email, password);
         if (response) {
             res.status(200).json(response); // 200 OK
@@ -42,13 +40,11 @@ const login = async (req, res) => {
 
 const extractDataFromToken = (req, res) => {
     try {
-        console.log('in jwt');
         const { accessToken } = req.body;
         if (!accessToken) {
             return res.status(400).json({ error: 'Access token is required' }); // 400 Bad Request if token is missing
         }
         const decodedData = jwt.verify(accessToken, process.env.JWT_SECRET);
-        console.log(decodedData);
 
         res.status(200).json(decodedData); // 200 OK on successful token verification
     } catch (error) {

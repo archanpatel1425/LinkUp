@@ -12,7 +12,6 @@ const generateJWT = (payload) => {
 const signup = async (userData) => {
     try {
         const user = new User(userData);
-        console.log('here2', user)
         user.save();
         const userId = user._id.toString()
         assignMeetingId(userId)
@@ -27,13 +26,11 @@ const signup = async (userData) => {
 
 const login = async (email, password) => {
     try {
-        console.log('in services login')
         const userData = await User.findOne({ email: email, password: password });
         if (!userData) throw new Error('User not found');
         // Generate tokens, etc.
         const username = userData['first_name'] + ' ' + userData['last_name']
         const userId = userData._id.toString()
-        console.log(username, userId)
         const accessToken = generateJWT({ userId, email, username })
         return { message: 'Login successful', accessToken, userId, username };
     } catch (error) {

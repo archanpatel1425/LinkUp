@@ -65,7 +65,6 @@ const VideoChat = () => {
         // Set up socket event listeners
 
         socketRef.current.on('room-users', (usersInRoom) => {
-            console.log('Received room users:', usersInRoom);
             const { participants, waitingUsers } = usersInRoom;
 
             // Convert participants object to array
@@ -90,8 +89,6 @@ const VideoChat = () => {
 
             setParticipants(participantsArray);
             setWaitingUsers(waitingUsersArray);
-            console.log('participents', participants)
-            console.log('participents updated')
         });
         socketRef.current.on('user-joined', handleUserJoined);
         socketRef.current.on('offer', handleOffer);
@@ -112,7 +109,6 @@ const VideoChat = () => {
         };
     }, [roomId]);
 
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -131,6 +127,7 @@ const VideoChat = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
     useEffect(() => {
         socketRef.current.on('update-socketId', (socketId) => {
             setSocketId(socketId)
@@ -139,16 +136,16 @@ const VideoChat = () => {
             socketRef.current.off('update-socketId');
         }
     }, [socketId])
+
     const check_is_host = () => {
         axios.post(`http://localhost:5000/meeting/check-host/`, { roomId, user_id: userId })
             .then((response) => {
                 if (response.data.is_host == true) {
-                    console.log("host")
                     setIsHost(true)
                 }
             })
     }
-    // 2. Modify startStream to only handle media and emit join-room
+
     const startStream = async () => {
         try {
             localStream.current = await navigator.mediaDevices.getUserMedia({
@@ -157,7 +154,6 @@ const VideoChat = () => {
             });
             localVideoRef.current.srcObject = localStream.current;
             socketRef.current.emit('join-room', roomId, username, userId);
-            console.log(location.state.micOn, location.state.videoOn)
             if (!location.state.videoOn) {
                 toggleVideo()
             }
@@ -178,7 +174,6 @@ const VideoChat = () => {
     };
 
     const handleUserJoined = async (socketId) => {
-        console.log('User joined room:', socketId);
         const peerConnection = createPeerConnection(socketId);
         const dataChannel = peerConnection.createDataChannel('chat');
         setupDataChannel(dataChannel, socketId);
@@ -209,8 +204,6 @@ const VideoChat = () => {
     };
 
     const handleUserDisconnected = (socketId) => {
-        console.log(`User disconnected: ${socketId}`);
-        console.log(participants)
         if (peerConnections.current[socketId]) {
             peerConnections.current[socketId].close();
             delete peerConnections.current[socketId];
@@ -246,13 +239,10 @@ const VideoChat = () => {
         return peerConnection;
     };
 
-
-
     const removeRemoteStream = (socketId) => {
         const videoElement = document.getElementById(`remote-video-${socketId}`);
         if (videoElement) videoElement.remove();
     };
-
 
     const toggleMic = () => {
         const audioTrack = localStream.current.getAudioTracks()[0];
@@ -301,7 +291,6 @@ const VideoChat = () => {
         }
     };
 
-
     const stopScreenShare = () => {
         if (screenStream.current) {
             screenStream.current.getTracks().forEach(track => track.stop());
@@ -319,7 +308,6 @@ const VideoChat = () => {
         setIsScreenSharing(false);
         socketRef.current.emit('toggle-screen-share', roomId, false);
     };
-
 
     const sendMessage = () => {
         if (inputMessage.trim()) {
@@ -349,6 +337,7 @@ const VideoChat = () => {
         // Navigate to dashboard
         navigate('/dashboard');
     };
+
     const toggleWaitingRoom = () => {
         setShowWaitingRoom(!showWaitingRoom);
         setShowChat(false);
@@ -368,6 +357,7 @@ const VideoChat = () => {
         setShowParticipants(false);
         setShowWaitingRoom(false);
     };
+
     const admitUser = (userSocketId) => {
         socketRef.current.emit('admit-user', roomId, userSocketId);
     }

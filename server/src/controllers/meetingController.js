@@ -24,7 +24,6 @@ const fetchMeetingDetail = async (req, res) => {
 
 const getMeetingId = async (req, res) => {
     const userId = req.body.user_id;
-    console.log('in metting')
     try {
         const meeting = await meetingService.getMeetingByHostId(userId);
         if (meeting) {

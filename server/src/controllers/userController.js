@@ -13,7 +13,6 @@ async function getUserUsername(req, res) {
 async function fetchProfilePhoto(req, res) {
   try {
     const userId = req.body.user_id;
-    console.log("------------", userId)
     const profilePic = await userService.fetchProfilePhoto(userId);
     res.status(200).json({ profilePic });
   } catch (error) {
@@ -24,7 +23,6 @@ async function fetchProfilePhoto(req, res) {
 async function fetchSettings(req, res) {
   try {
     const meetingId = req.body.meetingId;
-    console.log(meetingId, '===============')
     const controls = await userService.fetchMeetingSettings(meetingId);
     res.status(200).json({ controls });
   } catch (error) {
@@ -39,9 +37,6 @@ async function saveSettings(req, res) {
       allow_participants_screen_share: req.body.allowScreenShare,
       enableWaitingRoom: req.body.enableWaitingRoom,
     };
-    console.log('change setting')
-    console.log('change setting', userId)
-    console.log('change setting', controls)
 
     const updatedControls = await userService.saveMeetingSettings(userId, controls);
     res.status(200).json({ controls: updatedControls });
