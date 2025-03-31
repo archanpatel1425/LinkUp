@@ -108,7 +108,7 @@ const Navbar = () => {
                 </button>
 
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-gray-900 border mt-5 border-gray-600 text-white rounded-md shadow-lg py-1 z-10"> {/* Dark-themed profile menu */}
+                  <div className="absolute right-0 mt-2 w-48 bg-gray-900 border border-gray-600 text-white rounded-md shadow-lg py-1 z-10">
 
 
                     <button
@@ -139,7 +139,7 @@ const Navbar = () => {
                   <img src={profilePhotoUrl} alt="" className="w-full h-full rounded-full object-cover" />
                 </button>
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-gray-900 border mt-5 border-gray-600 text-white rounded-md shadow-lg py-1 z-10"> {/* Dark-themed profile menu */}
+                  <div className="absolute right-0 mt-2 w-48 bg-gray-900 border border-gray-600 text-white rounded-md shadow-lg py-1 z-10"> {/* Dark-themed profile menu */}
 
 
                     <button
