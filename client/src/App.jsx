@@ -3,28 +3,27 @@ import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastProvider } from './components/Toast';
 import { AuthContext } from "./helpers/AuthContext";
-import AfterLogin_Home from './pages/AfterLogin_Home';
-import Home from './pages/Home';
 import JoinMeeting from './pages/JoinMeeitng';
 import Login from './pages/Login';
 import NotFound from "./pages/NotFound";
 import Signup from './pages/Signup';
 import VideoChat from './pages/VideoChat';
 import WaitingRoom from './pages/WaitingRoom';
+import Dashboard from './pages/Dashboard';
 const App = () => {
   const [authState, setAuthState] = useState({
     user_id: '',
     email: '',
     status: false,
   });
-  const [loading, setLoading] = useState(true); // Start with loading set to true
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const accessToken = localStorage.getItem("jwt_token");
     if (accessToken) {
       get_details(accessToken);
     } else {
-      setLoading(false); // No token, stop loading
+      setLoading(false); 
     }
   }, []);
 
@@ -48,7 +47,7 @@ const App = () => {
       console.error("Error during token validation", error);
       setAuthState({ username: '', user_id: '', email: '', status: false });
     } finally {
-      setLoading(false); // Stop loading regardless of success or error
+      setLoading(false); 
     }
   };
 
@@ -61,8 +60,7 @@ const App = () => {
           <Router>
             <ToastProvider>
               <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route exact path='/dashboard' element={<AfterLogin_Home />} />
+                <Route exact path='/' element={<Dashboard />} />
                 <Route exact path='/login' element={<Login />} />
                 <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/meet/:roomId' element={<VideoChat />} />

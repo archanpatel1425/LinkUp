@@ -1,21 +1,17 @@
 import React from 'react';
-import { FaHome, FaCalendar, FaHistory, FaVideo, FaUserPlus, FaTimes, FaCog } from 'react-icons/fa'; // FaCog added for Settings
+import { FaCog, FaHome, FaTimes, FaUserPlus } from 'react-icons/fa';
 
 const Sidebar = ({ isOpen, toggleSidebar, setActiveComponent, isMobile }) => {
   const menuItems = [
-    { icon: FaHome, text: 'Home', component: 'Home' },/* 
-    { icon: FaCalendar, text: 'Upcoming', component: 'Upcoming' },
-    { icon: FaHistory, text: 'Previous', component: 'Previous' },
-    { icon: FaVideo, text: 'Recordings', component: 'Recordings' }, */
+    { icon: FaHome, text: 'Home', component: 'Home' },
     { icon: FaUserPlus, text: 'Personal Room', component: 'PersonalRoom' },
-    { icon: FaCog, text: 'Settings', component: 'Settings' }, // New Settings menu item
+    { icon: FaCog, text: 'Settings', component: 'Settings' },
   ];
 
   const sidebarClasses = isMobile
-    ? `fixed inset-y-0 left-0 z-0 w-64 bg-gray-800 text-white transform mt-16 ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      } transition-transform duration-300 ease-in-out`
-    : 'fixed inset-y-0 left-0 w-64 bg-gray-800 text-white mt-16'; // Added mt-16 to shift the sidebar down
+    ? `fixed inset-y-0 left-0 z-0 w-64 bg-gray-800 text-white transform mt-16 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+    } transition-transform duration-300 ease-in-out`
+    : 'fixed inset-y-0 left-0 w-64 bg-gray-800 text-white mt-16';
 
   return (
     <div className={sidebarClasses}>

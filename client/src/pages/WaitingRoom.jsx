@@ -61,7 +61,7 @@ const WaitingRoom = () => {
                 });
         } else {
             console.log('Invalid pattern of meeting ID');
-            navigate('/dashboard');
+            navigate('/');
         }
     };
 

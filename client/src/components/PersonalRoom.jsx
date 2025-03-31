@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Copy } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 
-import { useToast } from './Toast'; // Ad
+import { useToast } from './Toast'; 
 import { AuthContext } from "../helpers/AuthContext";
 const PersonalRoom = () => {
   const [inviteLink, setInviteLink] = useState('');
@@ -28,7 +28,6 @@ const PersonalRoom = () => {
       });
   };
 
-  // Function to copy the invite link to the clipboard
   const handleCopyLink = () => {
     navigator.clipboard.writeText(inviteLink).then(() => {
       showToast('Meeting Link copied', 'info');
@@ -37,7 +36,6 @@ const PersonalRoom = () => {
     });
   };
 
-  // Function to copy the meeting ID to the clipboard
   const handleCopyMeetingID = () => {
     navigator.clipboard.writeText(meetingID).then(() => {
       showToast('Meeting Id copied', 'info');
@@ -46,7 +44,6 @@ const PersonalRoom = () => {
     });
   };
 
-  // Function to copy the full meeting invitation (Topic, Meeting ID, Invite Link)
   const handleCopyInvitation = () => {
     const invitationText = `Topic: ${topic}\nMeeting ID: ${meetingID}\nInvite Link: ${inviteLink}`;
     navigator.clipboard.writeText(invitationText).then(() => {
@@ -56,7 +53,6 @@ const PersonalRoom = () => {
     });
   };
 
-  // Function to generate a new Meeting ID (can be from API or random generation)
   const generateNewMeetingID = () => {
     axios.post("http://localhost:5000/meeting/generate-new-meetingId", { user_id })
       .then((response) => {
@@ -111,7 +107,7 @@ const PersonalRoom = () => {
               </button>
               <button
                 className="bg-gray-700 text-white px-4 py-2 rounded flex items-center justify-center"
-                onClick={generateNewMeetingID} // Generate new Meeting ID
+                onClick={generateNewMeetingID} 
               >
                 Generate New Meeting ID
               </button>

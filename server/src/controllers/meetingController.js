@@ -1,4 +1,3 @@
-// controllers/meetingController.js
 const meetingService = require('../services/meetingService');
 
 const fetchMeetingDetail = async (req, res) => {
@@ -72,7 +71,6 @@ const checkHost = async (req, res) => {
     }
 };
 
-// Define other controllers based on the logic in your original views.py...
 const checkMeetingId = async (req, res) => {
     try {
         const { meetingId } = req.body
@@ -93,5 +91,4 @@ module.exports = {
     generateNewMeetingId,
     checkHost,
     checkMeetingId
-    // Other functions
 };

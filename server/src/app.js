@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 
 const cors = require("cors");
@@ -8,7 +7,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const axios = require('axios');
 const session = require('express-session');
-const connectDB = require('./config/db');  // Import database connection
+const connectDB = require('./config/db');  
 
 const meetingRoutes = require('./routes/meetingRoutes');
 const userRoutes = require("./routes/userRoutes");
@@ -17,10 +16,8 @@ const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
-// Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
 connectDB();
 
 const allowedOrigins = [
@@ -38,10 +35,9 @@ app.use(session({
 }));
 
 
-// Middleware setup
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // Handles URL-encoded data (if needed)
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());  
 app.use(cookieParser());

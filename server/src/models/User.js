@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        default: null // Default to null if no profile picture is provided
+        default: null 
     },
     birthDate: {
         type: Date,
@@ -33,11 +33,10 @@ const UserSchema = new mongoose.Schema({
     },
     signedUpAt: {
         type: Date,
-        default: Date.now // Sets the current date/time as default
+        default: Date.now 
     }
 }, {
-    collection: 'user' // Use 'user' as the collection name
+    collection: 'user'
 });
 
-// Export the model
 module.exports = mongoose.model('User', UserSchema);

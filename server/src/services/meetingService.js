@@ -1,4 +1,3 @@
-// services/meetingService.js
 const { ObjectId } = require('mongodb');
 const Meeting = require('../models/Meeting');
 const User = require('../models/User');
@@ -26,7 +25,6 @@ const fetchMeetingDetail = async (hostId) => {
     return { meetingData, userData };
 };
 
-// Add more functions as necessary...
 const generateMeetingId = () => {
     const meetingId = uuidv4().replace(/-/g, '').slice(0, 12);
     return `${meetingId.slice(0, 4)}-${meetingId.slice(4, 8)}-${meetingId.slice(8)}`;
@@ -75,17 +73,14 @@ const assignMeetingId = async (user_id) => {
 const getMeetingDetails = async (userId) => {
     try {
 
-        // Fetch meeting data by host_id
         const meetingData = await Meeting.findOne({ host_id: userId });
 
-        // Fetch user data by user_id
         const userData = await User.findOne({ _id: new ObjectId(userId) });
 
         if (!meetingData || !userData) {
             return null;
         }
 
-        // Construct and return the meeting details
         const username = `${userData.first_name} ${userData.last_name}`;
         return {
             username,
@@ -104,7 +99,7 @@ const checkHost = async (meetingId, userId) => {
             host_id: userId
         });
 
-        return !!user;  // Returns true if user is found, otherwise false
+        return !!user;  
     } catch (error) {
         console.error('Error in checkHost:', error);
         throw error;
@@ -114,7 +109,7 @@ const checkHost = async (meetingId, userId) => {
 const checkMeetingId = async (meetingId) => {
     try {
         const meeting = await Meeting.findOne({ meeting_id: meetingId });
-        return !!meeting;  // Returns true if user is found, otherwise false
+        return !!meeting;  
     } catch (error) {
         console.error('Error in checkMeetingId:', error);
         throw error;
@@ -130,5 +125,4 @@ module.exports = {
     generateNewMeetingId,
     checkHost,
     checkMeetingId
-    // Other functions
 };

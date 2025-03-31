@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { useToast } from '../components/Toast'; // Ad
+import { useToast } from '../components/Toast'; 
 import { AuthContext } from "../helpers/AuthContext";
 
 const Signup = () => {
@@ -16,7 +16,7 @@ const Signup = () => {
   useEffect(() => {
     const token = localStorage.getItem('jwt_token');
     if (token) {
-      navigate('/dashboard');
+      navigate('/');
     }
   }, [navigate]);
 
@@ -40,7 +40,7 @@ const Signup = () => {
           status: true,
         });
         showToast(`Successfully Signup`, 'success')
-        navigate('/dashboard');
+        navigate('/');
       }
     } catch (error) {
       console.error('There was an error!', error);

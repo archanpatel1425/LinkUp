@@ -23,7 +23,6 @@ const Settings = () => {
   const [allowScreenShare, setAllowScreenShare] = useState(false);
   const [enableWaitingRoom, setEnableWaitingRoom] = useState(false);
 
-  // Fetch user settings on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +46,6 @@ const Settings = () => {
     fetchData();
   }, [user_id]);
 
-  // Save settings to backend when toggles change
   const saveSettings = async (newSettings) => {
     try {
       await axios.post('http://localhost:5000/user/save-settings/', {
@@ -79,7 +77,6 @@ const Settings = () => {
         break;
     }
 
-    // Call the save function after setting state
     saveSettings(newSettings);
   };
 
@@ -89,7 +86,6 @@ const Settings = () => {
         <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Meeting Settings</h1>
         <div className="bg-gray-800 rounded-lg p-4 sm:p-6">
           <div className="space-y-6">
-            {/* Toggle for Allow Screen Share */}
             <div className="flex items-center justify-between">
               <label className="text-gray-400">Allow Participants for Screen Share</label>
               <Switch
@@ -98,7 +94,6 @@ const Settings = () => {
               />
             </div>
 
-            {/* Toggle for Video On While Joining */}
             <div className="flex items-center justify-between">
               <label className="text-gray-400">Enable waiting room</label>
               <Switch

@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { useToast } from '../components/Toast'; // Ad
+import { useToast } from '../components/Toast'; 
 import { AuthContext } from "../helpers/AuthContext";
 
 const Login = () => {
@@ -39,7 +39,7 @@ const Login = () => {
                     email: email,
                     status: true,
                 });
-                navigate('/dashboard');
+                navigate('/');
             }
         } catch (error) {
             console.error('Login error:', error);

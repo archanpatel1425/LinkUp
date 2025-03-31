@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import PersonalRoom from '../components/PersonalRoom';
 import Home from '../components/Dashboard_Home';
 import Navbar from '../components/Navbar';
+import PersonalRoom from '../components/PersonalRoom';
 import Settings from '../components/Settings';
 import Sidebar from '../components/Sidebar';
-import { AuthContext } from "../helpers/AuthContext";
 
-const AfterLogin_Home = () => {
+const Dashboard = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile);
     const [activeComponent, setActiveComponent] = useState('Home');
     const navigate = useNavigate();
-    const { authState } = useContext(AuthContext);
 
     useEffect(() => {
         const token = localStorage.getItem('jwt_token');
@@ -75,4 +73,4 @@ const AfterLogin_Home = () => {
     );
 };
 
-export default AfterLogin_Home;
+export default Dashboard;

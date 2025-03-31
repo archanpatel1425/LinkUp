@@ -1,9 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from "../helpers/AuthContext";
 const JoinMeeting = () => {
-    const [meetingId, setMeetingId] = useState(''); // State for meeting ID
-    const { authState } = useContext(AuthContext);
+    const [meetingId, setMeetingId] = useState('');
     const navigate = useNavigate();
 
     function putInWaitingRoom() {
@@ -17,7 +15,7 @@ const JoinMeeting = () => {
                     type="text"
                     placeholder="Enter meeting ID"
                     value={meetingId}
-                    onChange={(e) => setMeetingId(e.target.value)} // Set meeting ID onChange
+                    onChange={(e) => setMeetingId(e.target.value)}
                     className="w-full p-2 border border-gray-300 rounded"
                 />
                 <button

@@ -5,7 +5,7 @@ import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash } from 'react-ic
 import { MdScreenShare } from 'react-icons/md';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-import { useToast } from '../components/Toast'; // Ad
+import { useToast } from '../components/Toast'; 
 import { AuthContext } from "../helpers/AuthContext";
 
 const VideoChat = () => {
@@ -57,8 +57,6 @@ const VideoChat = () => {
         }
         setAllow_participants_screen_share(location.state.allow_participants_screen_share)
         setEnableWaitingRoom(location.state.enableWaitingRoom)
-        // setVideoOn(location.state.videoOn)
-        // setMicOn(location.state.micOn)
         check_is_host()
         socketRef.current = io('http://localhost:5000');
         startStream();
@@ -117,7 +115,6 @@ const VideoChat = () => {
                 if (!isToggleButton) {
                     setShowWaitingRoom(false);
                     setShowChat(false);
-                    // setShowParticipants(false);
                 }
             }
         };
@@ -326,16 +323,13 @@ const VideoChat = () => {
             localStream.current = null;
         }
 
-        // Clean up peer connections
         Object.values(peerConnections.current).forEach(pc => pc.close());
         peerConnections.current = {};
         socketRef.current.emit('leave-room', roomId);
 
-        // Disconnect the socket and create a new connection
         socketRef.current.disconnect();
 
-        // Navigate to dashboard
-        navigate('/dashboard');
+        navigate('/');
     };
 
     const toggleWaitingRoom = () => {

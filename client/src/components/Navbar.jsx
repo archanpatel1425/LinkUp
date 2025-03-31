@@ -38,7 +38,6 @@ const Navbar = () => {
     showToast("Successfully logged out!", "success");
     navigate('/login');
 
-    // Show the toast notification here
   };
 
   const toggleProfileMenu = () => {
@@ -55,7 +54,6 @@ const Navbar = () => {
         setIsMobileMenuOpen(false);
       }
       if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
-        // setIsProfileMenuOpen(false);
       }
     };
 
@@ -73,36 +71,15 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 order-2">
-            <Link
-              to="/"
-              className="text-white text-lg hover:text-gray-300 relative group"
-            >
-              Home
-              <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-gray-300 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-            </Link>
             {isLogin && (
               <Link
-                to="/dashboard"
+                to="/"
                 className="text-white text-lg hover:text-gray-300 relative group"
               >
                 Dashboard
                 <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-gray-300 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
             )}
-            {/* <Link
-              to="/about"
-              className="text-white text-lg hover:text-gray-300 relative group"
-            >
-              About
-              <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-gray-300 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white text-lg hover:text-gray-300 relative group"
-            >
-              Contact Us
-              <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-gray-300 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-            </Link> */}
 
             {!isLogin ? (
               <>
@@ -189,10 +166,7 @@ const Navbar = () => {
             <X size={24} />
           </button>
           <div className="flex flex-col space-y-4 mt-12">
-            <Link to="/" className="text-white text-lg hover:text-gray-300">Home</Link>
-            {isLogin && <Link to="/dashboard" className="text-white text-lg hover:text-gray-300">Dashboard</Link>}
-            {/*             <Link to="/about" className="text-white text-lg hover:text-gray-300">About</Link>
-            <Link to="/contact" className="text-white text-lg hover:text-gray-300">Contact Us</Link> */}
+            {isLogin && <Link to="/" className="text-white text-lg hover:text-gray-300">Dashboard</Link>}
             {!isLogin ? (
               <>
                 <Link to="/login" className="text-white text-lg hover:text-gray-300">Login</Link>
