@@ -1,16 +1,12 @@
-// server.js
 const http = require('http');
-const app = require('./app'); // Import the Express app
-const initializeSocket = require('./config/socketConfig'); // Import socket configuration
+const app = require('./app'); 
+const initializeSocket = require('./config/socketConfig'); 
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Create HTTP server using the Express app
 const server = http.createServer(app);
-// Initialize socket configuration
 initializeSocket(server);
 
-// Start the server
 const PORT = process.env.PORT || 5000;
 function startServer() {
   try {

@@ -26,7 +26,6 @@ function handleUserLeaving(socket, roomId, io, rooms) {
     }
 
     if (user) {
-      // console.log(`${user.username} (${socket.id}) left room: ${roomId}`);
 
       if (Object.keys(participants).length === 0 && Object.keys(waitingUsers).length === 0) {
         rooms.delete(roomId);
@@ -35,8 +34,6 @@ function handleUserLeaving(socket, roomId, io, rooms) {
       socket.leave(roomId);
       io.to(roomId).emit('user-disconnected', socket.id, user.username);
       io.to(roomId).emit('room-users', get_users_in_room(roomId, rooms));
-      // console.log("-----------------------------------------");
-      // console.log(get_users_in_room(roomId, rooms));
     }
   }
 }

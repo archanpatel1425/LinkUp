@@ -61,10 +61,8 @@ app.use('/meeting', meetingRoutes);
 app.use("/user", userRoutes);
 app.use('/auth', authRoutes);
 
-
-// Routes
 app.get('/', (req, res) => {
-  res.send('home page');
+  res.send('Linkup Backend...');
 });
 
 module.exports = app;

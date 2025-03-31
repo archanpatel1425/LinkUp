@@ -39,8 +39,7 @@ const VideoChat = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('jwt_token')) {
-            console.log('heloo uu')
-            navigate("/")
+            navigate("/login")
             return
         }
         if (!sessionStorage.getItem('meeting_id')) {
@@ -55,7 +54,6 @@ const VideoChat = () => {
         // Set up socket event listeners
 
         socketRef.current.on('room-users', (usersInRoom) => {
-            console.log('Received room users:', usersInRoom);
             const { participants, waitingUsers } = usersInRoom;
 
             // Convert participants object to array
@@ -104,7 +102,6 @@ const VideoChat = () => {
         try {
             localStream.current = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
             localVideoRef.current.srcObject = localStream.current;
-            console.log("----here")
             socketRef.current.emit('join-room', roomId, username, userId);
         } catch (error) {
             console.error('Error accessing media devices', error);
@@ -120,7 +117,6 @@ const VideoChat = () => {
     };
 
     const handleUserJoined = async (userId) => {
-        console.log('User joined room:', userId);
         const peerConnection = createPeerConnection(userId);
         const dataChannel = peerConnection.createDataChannel('chat');
         setupDataChannel(dataChannel, userId);
@@ -151,8 +147,6 @@ const VideoChat = () => {
     };
 
     const handleUserDisconnected = (userId) => {
-        console.log(`User disconnected: ${userId}`);
-        console.log(participants)
         if (peerConnections.current[userId]) {
             peerConnections.current[userId].close();
             delete peerConnections.current[userId];

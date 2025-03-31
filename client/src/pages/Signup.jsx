@@ -16,7 +16,7 @@ const Signup = () => {
   useEffect(() => {
     const token = localStorage.getItem('jwt_token');
     if (token) {
-      navigate('/');
+      navigate('/dashboard');
     }
   }, [navigate]);
 
@@ -27,13 +27,11 @@ const Signup = () => {
     }
 
     try {
-      console.log(formDataToSend)
       const response = await axios.post('http://localhost:5000/auth/signup', formDataToSend);
       if (response.data.error) {
         showToast(`${response.data.error}`)
       }
       else {
-        console.log(response.data)
         localStorage.setItem('jwt_token', response.data.accessToken);
         setAuthState({
           username: response.data.username,
@@ -42,7 +40,6 @@ const Signup = () => {
           status: true,
         });
         showToast(`Successfully Signup`, 'success')
-        console.log(authState.user_id)
         navigate('/dashboard');
       }
     } catch (error) {

@@ -23,17 +23,11 @@ const WaitingRoom = () => {
     useEffect(() => {
         socketRef.current = io('http://localhost:5000');
         socketRef.current.on('admitted-to-room', async (userData) => {
-            console.log('admited')
-            console.log(userData)
             setIsLoading(false);
             sessionStorage.setItem('meeting_id', btoa(meetingId));
             await axios.post('http://localhost:5000/user/fetch-settings/', { meetingId })
                 .then((res) => {
                     const { allow_participants_screen_share, enableWaitingRoom } = res.data.controls;
-                    console.log(allow_participants_screen_share,
-                        enableWaitingRoom,
-                        micOn,
-                        videoOn)
                     sessionStorage.setItem('meeting_id', btoa(meetingId));
                     navigate(`/meet/${meetingId}`, {
                         state: {
@@ -67,7 +61,7 @@ const WaitingRoom = () => {
                 });
         } else {
             console.log('Invalid pattern of meeting ID');
-            navigate('/');
+            navigate('/dashboard');
         }
     };
 
@@ -82,10 +76,6 @@ const WaitingRoom = () => {
                     socketRef.current.emit('join-waiting-room', meetingId, 'Archan', 'Archan1234', { videoOn, micOn });
                 } else {
                     sessionStorage.setItem('meeting_id', btoa(meetingId));
-                    console.log(allow_participants_screen_share,
-                        enableWaitingRoom,
-                        micOn,
-                        videoOn)
                     navigate(`/meet/${meetingId}`, {
                         state: {
                             allow_participants_screen_share,

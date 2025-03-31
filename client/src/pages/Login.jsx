@@ -20,7 +20,7 @@ const Login = () => {
     useEffect(() => {
         const token = localStorage.getItem('jwt_token');
         if (token) {
-            navigate('/');
+            navigate('/login');
         }
     }, [navigate]);
 
