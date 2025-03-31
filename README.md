@@ -22,9 +22,11 @@ Linkup is a video conferencing platform similar to Zoom, offering personal meeti
 cd client
 npm install
 npm run dev
+```
 
 ### 🔹 Backend Setup  
 ```bash
 cd server
 npm install
 npm run dev
+```
