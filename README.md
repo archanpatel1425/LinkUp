@@ -1,6 +1,6 @@
 # 📹 Linkup
 
-Linkup is a video conferencing platform similar to Zoom, offering personal meeting rooms, a waiting room with admin controls, screen sharing, real-time chat, and invitation link sharing. If a meeting ID is leaked, a new one can be generated instantly.
+Linkup is a video conferencing platform , offering personal meeting rooms, a waiting room with admin controls, screen sharing, real-time chat, and invitation link sharing. If a meeting ID is leaked, a new one can be generated instantly.
 
 ## 🌟 Features
 
@@ -11,9 +11,9 @@ Linkup is a video conferencing platform similar to Zoom, offering personal meeti
 - 📢 **Real-time Chatting**
 - 📺 **Screen Sharing**
 
-## 🛠️ Tech Stack
+## 🛠️  Languages and Frameworks
 
-- **Frontend:** React + Vite
+- **Frontend:** React + Vite , Tailwind CSS
 - **Backend:** Node.js
 - **Database:** MongoDB
 
